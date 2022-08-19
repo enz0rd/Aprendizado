@@ -1,17 +1,31 @@
 
 var nome = "";
 var idade = 0;
-var estudante;
+var estudante = Boolean;
 var jogadores = [];
 
 function addJogadores(nome, idade, estudante) {
     jogadores.push({
-        nome: "",
-        idade: 0,
-        estudante: Boolean
+        nome,
+        idade,
+        estudante
     });
 }
 
 function consultarJog() {
-    console.log(jogadores);
+    // for(let i = 0; i < jogadores.length; i++) {
+    //     console.log(`jogadores,  
+    //     nome: ${jogadores[i].nome}
+    //     idade: ${jogadores[i].idade}
+    //     estudante: ${jogadores[i].estudante}`
+    // );
+    // }
+    jogadores.map(jogador => 
+        console.log(`jogadores,  
+        nome: ${jogador.nome}
+        idade: ${jogador.idade}
+        estudante: ${jogador.estudante}`
+        )
+)
+    
 }
