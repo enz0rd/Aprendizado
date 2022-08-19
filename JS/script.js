@@ -21,7 +21,7 @@ function consultarJog() {
     // );
     // }
     jogadores.map(jogador => 
-        console.log(`jogadores,  
+        console.log(`jogadores
         nome: ${jogador.nome}
         idade: ${jogador.idade}
         estudante: ${jogador.estudante}`
