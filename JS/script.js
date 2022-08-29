@@ -1,16 +1,26 @@
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+
 let player1 = {
     x: 0,
     y: 0,
     pts: 0,
+    color: Hexcolor(),
 };
 
 let enemies = [{
     x: 5,
-    y: 5
+    y: 5,
+    color: '',
 }];
+
+
+function Hexcolor() {
+  return '#' + parseInt((Math.random() * 0xFFFFFF))
+    .toString(16)
+    .padStart(6, '0');
+}
 
 setInterval(addMonk, 2000);
 
@@ -18,7 +28,8 @@ function addMonk() {
     if(enemies.length < 15) {
         enemies.push({
             x: Math.floor(Math.random() * (19 - 0)),
-            y: Math.floor(Math.random() * (19 - 0))
+            y: Math.floor(Math.random() * (19 - 0)),
+            color: Hexcolor(),
         })
     }
 }
@@ -28,19 +39,17 @@ function checkCollision() {
         if((player1.x == enemies[i].x) && (player1.y == enemies[i].y)) {
             enemies.splice(i, 1);
             player1.pts = player1.pts + 1;
-            console.clear()
-            console.log(`Points: ${player1.pts}`)
         }
     }
 }
 
 function drawPlayer() {
-    context.fillStyle = "turquoise";
+    context.fillStyle = player1.color
     context.fillRect(player1.x, player1.y, 1, 1);
 }
 
 function drawMonk(enemy) {
-    context.fillStyle = "red";
+    context.fillStyle = enemy.color;
     context.fillRect(enemy.x, enemy.y, 1, 1);
 }
 
