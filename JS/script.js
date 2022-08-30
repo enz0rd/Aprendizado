@@ -10,8 +10,8 @@ let player1 = {
 };
 
 let enemies = [{
-    x: 5,
-    y: 5,
+    x: 0,
+    y: 0,
     color: '',
 }];
 
@@ -22,10 +22,10 @@ function Hexcolor() {
     .padStart(6, '0');
 }
 
-setInterval(addMonk, 2000);
+setInterval(addMonk, 100);
 
 function addMonk() {
-    if(enemies.length < 15) {
+    if(enemies.length < 100) {
         enemies.push({
             x: Math.floor(Math.random() * (19 - 0)),
             y: Math.floor(Math.random() * (19 - 0)),
@@ -39,6 +39,8 @@ function checkCollision() {
         if((player1.x == enemies[i].x) && (player1.y == enemies[i].y)) {
             enemies.splice(i, 1);
             player1.pts = player1.pts + 1;
+            console.clear();
+            console.log(`Points: ${player1.pts}`)
         }
     }
 }
@@ -66,7 +68,60 @@ function drawGame() {
     checkCollision();
 }
 
+function ia() {
+    if(enemies.length > 0) {
+        const bot = proxenemy(player1);
+        let event = {};
+        if(player1.x > bot.x) {
+            event.key = 'ArrowLeft';
+        } else if(player1.x < bot.x) {
+            event.key = 'ArrowRight';
+        } else if(player1.y > bot.y) {
+            event.key = 'ArrowUp';
+        } else if(player1.y < bot.y) {
+            event.key = 'ArrowDown';
+        }
+        movePlayer(event);
+    }
+}
+
 document.addEventListener('keydown', movePlayer);
+
+function proxenemy(player) {
+    let SelectEnemy = enemies[0];
+    for(let i = 1; i < enemies.length; i++) {
+        const AtualEnemy = enemies[i];
+        var DistanceSelected = 0;
+        if(player.x > SelectEnemy.x){
+            DistanceSelected = player.x - SelectEnemy.x
+        } else{
+            DistanceSelected = SelectEnemy.x - player.x
+        }
+        if(player.y > SelectEnemy.y) {
+            DistanceSelected = DistanceSelected + (player.y - SelectEnemy.y)
+        } else {
+            DistanceSelected = DistanceSelected + (SelectEnemy.y - player.y)
+        }
+
+        var DistanceAtual = 0;
+        if(player.x > AtualEnemy.x){
+            distsat = player.x - AtualEnemy.x
+        } else{
+            DistanceAtual = AtualEnemy.x - player.x
+        }
+        if(player.y > AtualEnemy.y) {
+            DistanceAtual = DistanceAtual + (player.y - AtualEnemy.y)
+        } else {
+            DistanceAtual = DistanceAtual + (AtualEnemy.y - player.y)
+        }
+        if(DistanceSelected > DistanceAtual) {
+            SelectEnemy = AtualEnemy;
+        }
+    }
+    return SelectEnemy
+}
+
+setInterval(ia, 10);
 
 function movePlayer(event) {
     if(event.key == 'ArrowUp') {
