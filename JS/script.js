@@ -105,7 +105,7 @@ function proxenemy(player) {
 
         var DistanceAtual = 0;
         if(player.x > AtualEnemy.x){
-            distsat = player.x - AtualEnemy.x
+            DistanceAtual = player.x - AtualEnemy.x
         } else{
             DistanceAtual = AtualEnemy.x - player.x
         }
@@ -121,7 +121,7 @@ function proxenemy(player) {
     return SelectEnemy
 }
 
-setInterval(ia, 10);
+setInterval(ia, 30);
 
 function movePlayer(event) {
     if(event.key == 'ArrowUp') {
