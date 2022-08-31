@@ -1,6 +1,7 @@
 document.getElementById('msarray').addEventListener('click', testarray);
 document.getElementById('mszeraarray').addEventListener('click', zerararray);
 document.getElementById('ritemarr').addEventListener('click', ritemarr);
+document.getElementById('mschatbot').addEventListener('click', chatbot);
 
 let array = [{
     name: '',
@@ -76,9 +77,40 @@ function zerararray() {
     let oz = confirm("Deseja resetar a Lista?");
 
     if(oz == true) {
-        array.pop();
+        while(array.length) {
+            array.pop();
+        }
         alert("A lista foi limpa!")
     } else {
         alert("A lista não foi alterada!");
+    }
+}
+
+function chatbot() {
+    var op1 = 0;
+    var op2 = 0;
+    while(op1 != 9){
+        op1 = prompt("1 - Paper Pack | 2 - Ruler | 9 - Exit");
+            if(op1 == 1) {
+                op2 = prompt("1 - Price | 2 - Help | 9 - Back");
+                if(op2 == 1){
+                    alert("The paper pack price is U$12");
+                }
+                else if(op2 == 2) {
+                    alert("To be helped, send an email to: helppaper@library.com");
+                }
+            }
+        if(op1 == 2){
+            op2 = prompt("1 - Price | 2 - Help | 9 - Back");
+                if(op2 == 1){
+                    alert("The Ruler price is U$2");
+                }
+                else if(op2 == 2) {
+                    alert("To be helped, send an email to: helpruler@library.com");
+                }
+            }
+        if(op1 == 9) {
+            alert("Thanks for calling us, get back soon!");
+        }
     }
 }
