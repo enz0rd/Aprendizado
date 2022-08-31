@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Silkscreen&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-size: 100%;
+    background: linear-gradient(45deg, #cac7ff, #da5fff);
+}
+
+.h {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+}
+
+.hsmenu{
+    display: flex;
+}
+
+.hstitle {
+    font-family: 'Josefin Sans', sans-serif;
+    color: rgb(76, 0, 78);
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.hsicone {
+    border-radius: 5px;
+}
+
+.m {
+    border-top: 0.4px solid aliceblue;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
+
+.ms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px;
+}
+
+.msc{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mst{
+    font-family: 'Silkscreen';
+    font-size: 50px;
+    color: aliceblue;
+    text-shadow: 4px 4px 4px #13103A;
+}
+
+.msimg {
+    -webkit-clip-path: polygon(91% 3%, 0 47%, 86% 87%);
+    clip-path: polygon(91% 3%, 0 47%, 86% 87%);
+    width: 300px;
+    height: 300px;
+}
+
+.msb {
+    background-color: aliceblue;
+    width: 200px;
+    height: 60px;
+    border: 2px solid #13103A;
+    font-family: 'Silkscreen';
+    font-weight: 600;
+    font-size: 20px;
+    color: #13103A;
+    box-shadow: 6px 6px 6px #67338a;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.msb:hover {
+    background-color: rgb(126, 126, 126);
+}
+
+.f {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-top: 0.4px solid aliceblue;
+    margin-bottom: 20px;
+}
+
+.fsicone {
+    border-radius: 5px;
+    height: 50px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.fslink {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fsnl {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #13103A;
+    font-weight: 600;
+    font-size: 22px;
+}
