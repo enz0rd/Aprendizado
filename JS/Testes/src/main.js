@@ -1,3 +1,5 @@
+// Index Page
+
 document.getElementById('msarray').addEventListener('click', testarray);
 document.getElementById('mszeraarray').addEventListener('click', zerararray);
 document.getElementById('ritemarr').addEventListener('click', ritemarr);
