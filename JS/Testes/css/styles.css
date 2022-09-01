@@ -99,6 +99,7 @@ body {
   background-color: rgb(104, 104, 104);
   color: aliceblue;
   border: 2px solid aliceblue;
+  transform: scale(1.10);
 }
 
 .ms2c {
