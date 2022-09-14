@@ -1,1 +1,2 @@
-outro texto
+mais uma alteração
+teste de QA
