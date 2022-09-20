@@ -96,6 +96,7 @@ let valinss = 0
 let valsind = 0
 let salliq = 0
 let totdesc = 0
+let totfgts = 0
 let tsab = false
 let qtdhrn = 0
 let qtdhrs = 0
@@ -107,13 +108,39 @@ const salcalc = () => {
 
   parseFloat(salb)
 
-  valir = salb * 0.11
   valinss = salb * 0.08
   valsind = salb * 0.05
+  valir = descir()
+  totfgts = acrescfgts();
 
-  totdesc = valir + valinss + valsind
+  if(valir == "Isento") {
+    totdesc = valinss + valsind
+  } else {
+    totdesc = valir + valinss + valsind
+  }
   salliq = salb - totdesc
+  salliq.toFixed(2)
   valhor()
+}
+
+acrescfgts = () => {
+  totfgts = salb * 0.11
+  parseFloat(totfgts).toFixed(2)
+  salliq = (salliq + totfgts).toFixed(2)
+  return totfgts.toFixed(2)
+}
+
+const descir = () => {
+  if(salb <= 900) {
+    return "Isento"
+  } else if (salb > 900 && salb <= 1500) {
+    return "R$" + (salb * 0.05).toFixed(2)
+  } else if (salb > 1500 && salb <= 2500) {
+    return "R$" + (salb * 0.1).toFixed(2)
+  } else if (salb > 2500) {
+    return "R$" + (salb * 0.2).toFixed(2)
+  }
+  
 }
 
 const valhor = () => {
@@ -122,7 +149,7 @@ const valhor = () => {
   tsab = prompt('Trabalha aos sábados? V/F')
   if (tsab == 'V') {
     qtdhrs = htrab * 6 * 21
-    salhor = salliq / qtdhrn
+    salhor = parseFloat(salliq).toFixed(2) / parseInt(qtdhrn)
   } else {
     qtdhrn = htrab * 5 * 21
     salhor = parseFloat(salliq).toFixed(2) / parseInt(qtdhrn)
@@ -132,12 +159,14 @@ const valhor = () => {
 
 const totsal = () => {
   alert(`
-    O valor do seu salário líquido é: ${salliq}
+    O valor do seu salário líquido é: R$${salliq.toFixed(2)}
+    
     Os descontos são:
-    Imposto de Renda: ${valir}
-    INSS: ${valinss}
-    Sindicato: ${valsind}
-    Desconto total: ${totdesc}
+      Imposto de Renda: ${descir()}
+      INSS: R$${valinss.toFixed(2)}
+      Sindicato: R$${valsind.toFixed(2)}
+      Desconto total: R$${totdesc.toFixed(2)}
+    O acréscimo de FGTS é: R$${acrescfgts()}
     `)
   tothor()
 }
@@ -145,11 +174,11 @@ const totsal = () => {
 const tothor = () => {
   if (valhor.tsab == 'V') {
     alert(`
-        Você ganha ${salhor.toFixed(2)} por hora e trabalha aos sábados.
+        Você ganha R$${salhor} por hora e trabalha aos sábados.
 `)
   } else {
     alert(`
-        Você ganha ${salhor.toFixed(2)} por hora e não trabalha aos sábados.
+        Você ganha R$${salhor} por hora e não trabalha aos sábados.
         `)
   }
 }
