@@ -102,7 +102,7 @@ let qtdhrn = 0
 let qtdhrs = 0
 let salhor = 0
 
-const salcalc = () => {
+salcalc = () => {
   alert('Bem vindo ao cálculo de salário!')
   salb = prompt('Digite o valor do seu salário bruto: Ex: 1423.54')
 
@@ -130,7 +130,7 @@ acrescfgts = () => {
   return totfgts.toFixed(2)
 }
 
-const descir = () => {
+descir = () => {
   if(salb <= 900) {
     return "Isento"
   } else if (salb > 900 && salb <= 1500) {
@@ -143,7 +143,7 @@ const descir = () => {
   
 }
 
-const valhor = () => {
+valhor = () => {
   htrab = prompt('Quantas horas você trabalha por dia? Ex: 5')
   parseInt(htrab)
   tsab = prompt('Trabalha aos sábados? V/F')
@@ -157,7 +157,7 @@ const valhor = () => {
   totsal()
 }
 
-const totsal = () => {
+totsal = () => {
   alert(`
     O valor do seu salário líquido é: R$${salliq.toFixed(2)}
     
@@ -171,7 +171,7 @@ const totsal = () => {
   tothor()
 }
 
-const tothor = () => {
+tothor = () => {
   if (valhor.tsab == 'V') {
     alert(`
         Você ganha R$${salhor} por hora e trabalha aos sábados.
