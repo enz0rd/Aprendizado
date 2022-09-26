@@ -104,55 +104,54 @@ let salhor = 0
 
 salcalc = () => {
   alert('Bem vindo ao cálculo de salário!')
-  salb = prompt('Digite o valor do seu salário bruto: Ex: 1423.54')
-
-  parseFloat(salb)
-
+  salb = parseFloat(prompt('Digite o valor do seu salário bruto: Ex: 1423.54'))
   valinss = salb * 0.08
   valsind = salb * 0.05
-  valir = descir()
-  totfgts = acrescfgts();
+  descir()
+}
 
+descir = () => {
+  if(salb <= 900) {
+    valir = "Isento"
+  } else if (salb > 900 && salb <= 1500) {
+    valir = (salb * 0.05)
+  } else if (salb > 1500 && salb <= 2500) {
+    valir = (salb * 0.1)
+  } else if (salb > 2500) {
+    valir = (salb * 0.2)
+  }
+  totfgts = salb * 0.11
+  calculoTotalDesc()
+}
+
+calculoTotalDesc = () => {
   if(valir == "Isento") {
     totdesc = valinss + valsind
   } else {
     totdesc = valir + valinss + valsind
   }
   salliq = salb - totdesc
-  salliq.toFixed(2)
   valhor()
 }
 
-acrescfgts = () => {
-  totfgts = salb * 0.11
-  parseFloat(totfgts).toFixed(2)
-  salliq = (salliq + totfgts).toFixed(2)
-  return totfgts.toFixed(2)
-}
-
-descir = () => {
-  if(salb <= 900) {
-    return "Isento"
-  } else if (salb > 900 && salb <= 1500) {
-    return "R$" + (salb * 0.05).toFixed(2)
-  } else if (salb > 1500 && salb <= 2500) {
-    return "R$" + (salb * 0.1).toFixed(2)
-  } else if (salb > 2500) {
-    return "R$" + (salb * 0.2).toFixed(2)
-  }
-  
-}
-
 valhor = () => {
-  htrab = prompt('Quantas horas você trabalha por dia? Ex: 5')
-  parseInt(htrab)
+  htrab = parseInt(prompt('Quantas horas você trabalha por dia? Ex: 5'))
   tsab = prompt('Trabalha aos sábados? V/F')
-  if (tsab == 'V') {
+  if (tsab === 'V') {
     qtdhrs = htrab * 6 * 21
-    salhor = parseFloat(salliq).toFixed(2) / parseInt(qtdhrn)
+    salhor = salliq / qtdhrs
   } else {
     qtdhrn = htrab * 5 * 21
-    salhor = parseFloat(salliq).toFixed(2) / parseInt(qtdhrn)
+    salhor = salliq / qtdhrn
+  }
+  convertValIr()
+}
+
+convertValIr = () => {
+  if (valir === "Isento") {
+    valir 
+  } else {
+    valir = "R$" + valir
   }
   totsal()
 }
@@ -162,23 +161,23 @@ totsal = () => {
     O valor do seu salário líquido é: R$${salliq.toFixed(2)}
     
     Os descontos são:
-      Imposto de Renda: ${descir()}
+      Imposto de Renda: ${valir}
       INSS: R$${valinss.toFixed(2)}
       Sindicato: R$${valsind.toFixed(2)}
       Desconto total: R$${totdesc.toFixed(2)}
-    O acréscimo de FGTS é: R$${acrescfgts()}
+    O acréscimo de FGTS é: R$${totfgts.toFixed(2)}
     `)
   tothor()
 }
 
 tothor = () => {
-  if (valhor.tsab == 'V') {
+  if (tsab === 'V') {
     alert(`
-        Você ganha R$${salhor} por hora e trabalha aos sábados.
+        Você ganha R$${salhor.toFixed(2)} por hora e trabalha aos sábados.
 `)
-  } else {
+  } else if (tsab !== "V") {
     alert(`
-        Você ganha R$${salhor} por hora e não trabalha aos sábados.
+        Você ganha R$${salhor.toFixed(2)} por hora e não trabalha aos sábados.
         `)
   }
 }
