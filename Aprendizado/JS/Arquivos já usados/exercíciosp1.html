@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title meta="utf-8">Exercícios 15/08</title>
+    </head>
+    <body>
+        <button id="circle">Run Circle Area Calculator</button>
+        <button id="ctof">Run CtoF</button>
+        <button id="ftoc">Run FtoC</button>
+        <button id="mn">Run Number Checker</button>
+        <button id="average">Run Average Calculator</button>
+
+        <script>
+            //Exercise 1
+            function circle() {
+                var r = 0;
+                var Sc = 0;
+                    alert("Welcome to the Area Calculator!");
+                    r = prompt("Enter the circle radius: ");
+                    Sc = 3.14 * (r*r)
+                    alert(`The result is: ${Sc}`);
+            }
+
+            //Exercise 2
+            function CtoF() {
+                var C = 0;
+                var F = 0;
+                    alert("Welcome to CtoF!");
+                    C = prompt("How many Celsius to Fahrenheit?");
+                    F = (C * (9/5)) + 32;
+                    alert(`The result is: ${F}`);
+                }
+
+            //Exercise 3
+            function FtoC() {
+                var F = 0;
+                var C = 0;
+                    alert("Welcome to FtoC!");
+                    F = prompt("How many Celsius to Fahrenheit?");
+                    C = (9/5) * (F-32);
+                    alert(`The result is: ${C}`);
+                }
+
+            //Exercise 4
+            function Mn() {
+                alert("Welcome to Number Checker!");
+                var n1 = prompt("Enter the 1st number:");
+                var n2 = prompt("Enter the 2nd number:");
+                var n3 = prompt("Enter the 3rd number:");
+                parseInt(n1,n2,n3);
+                
+                if(n1 > n2 && n1 > n3) {
+                        alert("The 1st number is the bigger!");
+                    } 
+                    else {
+                        alert("The 3rd number is the bigger!");
+                    }
+                
+                if(n2 > n1 && n2 > n3) {
+                        alert("The 2nd number is the bigger!");
+                    }
+                    else {
+                        alert("The 3rd number is the bigger!");
+                    }
+                }
+
+            //Exercise 5
+            function average() {
+                let a = 0;
+                let b = 0;
+                let c = 0;
+                var avg = 0;
+
+                    alert("Welcome to the Average Calculator!");
+                    a = prompt("Enter the 1st grade:");
+                    b = prompt("Enter the 2nd grade:");
+                    c = prompt("Enter the 3rd grade:");
+                    
+
+                    avg = (parseFloat(a) + parseFloat(b) + parseFloat(c)) / 3;
+
+                    alert(`The average is ${avg}`);
+            }
+
+            document.getElementById('circle').addEventListener('click', circle);
+            document.getElementById('ctof').addEventListener('click', CtoF);
+            document.getElementById('ftoc').addEventListener('click', FtoC);
+            document.getElementById('mn').addEventListener('click', Mn);
+            document.getElementById('average').addEventListener('click', average);
+        </script>
+    </body>
+</html>
