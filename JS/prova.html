@@ -8,27 +8,17 @@
   </head>
   <body>
     <script>
-      function soma() {
-        let n1 = prompt('1º número para a soma')
-        let n2 = prompt('2º número para a soma:')
-
-        let soma = parseInt(n1) + parseInt(n2)
-
-        alert(`A soma é ${soma}`)
-      }
-
-      function umpradez() {
-        for (i = 0; i <= 10; i++) {
-          console.log(i)
-        }
-      }
-
-      function nomes() {
-        const alunos = ['joão', 'maria', 'antonio', 'joana', 'alberto']
-
-        for (i = 0; i < alunos.length; i++) {
-          console.log(`o texto é: ${alunos[i]}`)
-        }
+      function salario(salarioBruto) {
+        let descontoINSS = salarioBruto * 0.08;
+        let descontoIR = salarioBruto * 0.11;
+        let descontoSindicato = salarioBruto * 0.05;
+        let salarioLiquido =
+          salarioBruto - descontoINSS - descontoIR - descontoSindicato;
+        console.log(`Salário Bruto: ${salarioBruto}
+        Desconto INSS: ${descontoINSS}
+        Desconto IR: ${descontoIR}
+        Desconto Sindicato: ${descontoSindicato}
+        Salário Líquido: ${salarioLiquido}`)
       }
     </script>
   </body>
