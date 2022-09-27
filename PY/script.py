@@ -1,4 +1,4 @@
-#Teste de OpenAI 
+#Teste de OpenAI
 
 def soma(a,b):
     return a+b
