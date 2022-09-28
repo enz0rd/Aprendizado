@@ -174,7 +174,7 @@ descir2 = () => {
 }
 
 calculoTotalDesc2 = () => {
-  if(valir == "Isento") {
+  if(valir === "Isento") {
     totdesc = valinss
   } else {
     totdesc = valir + valinss
