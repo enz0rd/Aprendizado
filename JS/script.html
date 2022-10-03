@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" id="butao">clica aqui</button>
+    <script>
+        let salarioLiq = 0
+        let salarioBru = 0
+        let descontoINSS = 0
+        let descontoSind = 0
+        let descontoIR = 0
+
+        inicio = () => {
+            alert("Bem vindo ao cálculo de salário!")
+            salarioBru = parseFloat(prompt("Insira o seu salário Bruto:"))
+            descontoSind = salarioBru * 0.08
+            descontoINSS2()
+        }
+
+        descontoINSS2 = () => {
+            if(salarioBru > 900 && salarioBru <= 1500) {
+                descontoINSS = salarioBru * 0.075
+            } else if(salarioBru > 1500 && salarioBru <= 2500) {
+                descontoINSS = salarioBru * 0.09
+            } else if(salarioBru > 2500 && salarioBru <= 3500) {
+                descontoINSS = salarioBru * 0.12
+            } else {
+                descontoINSS = salarioBru * 0.14
+            }
+            descontoIR2()
+        }
+
+        descontoIR2 = () => {
+            if(salarioBru <= 1900) {
+                descontoIR = 'Isento'
+            } else if(salarioBru > 1900 && salarioBru <= 2800) {
+                descontoIR = salarioBru * 0.075
+            } else if(salarioBru > 2800 && salarioBru <= 3800) {
+                descontoIR = salarioBru * 0.15
+            } else {
+                descontoIR = salarioBru * 0.225
+            }
+            Descontos()
+        }
+
+        Descontos = () => {
+            let totdesc = 0
+            if(descontoIR === 'Isento') {
+                totdesc = descontoINSS + descontoSind
+                salarioLiq = salarioBru - totdesc
+            } else {
+                totdesc = descontoINSS + descontoIR + descontoSind
+                salarioLiq = salarioBru - totdesc
+            }
+            resultadoSalario()
+        }
+
+        resultadoSalario = () => {
+                if(descontoIR === 'Isento') {
+                alert(`O seu salário bruto é: R$${salarioBru.toFixed(2)} \n
+                    Descontos: \n
+                        INSS: R$${descontoINSS.toFixed(2)} \n
+                        IR: ${descontoIR} \n
+                        Sindicato: R$${descontoSind.toFixed(2)} \n
+                        \n
+                    O seu salário Líquido é: R$${salarioLiq.toFixed(2)}
+                `)
+            } else {
+                alert(`O seu salário bruto é: ${salarioBru.toFixed(2)}\n
+                    Descontos:\n
+                        INSS: R$${descontoINSS.toFixed(2)}\n
+                        IR: R$${descontoIR.toFixed(2)}\n
+                        Sindicato: R$${descontoSind.toFixed(2)}\n
+                        \n
+                    O seu salário Líquido é: R$${salarioLiq.toFixed(2)}\n
+                `)
+            }
+        }
+        
+        document.getElementById('butao').addEventListener('click', inicio)
+    </script>
+</body>
+</html>
