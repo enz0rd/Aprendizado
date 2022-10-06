@@ -32,4 +32,22 @@ function calculoIR(salarioBruto) {
     }
 }
 
-module.exports = {jurosimples, jurocomposto, calculoIR}
+class Expoente {
+    constructor(num1,num2) {
+        this.num1 = num1
+        this.num2 = num2
+    }
+}
+
+class calculoexpoente extends Expoente {
+    expoente() {
+        let result = (this.num1 ** this.num2)
+        console.log(result)
+        return parseInt(result)
+    }
+}
+
+
+let calculo = new calculoexpoente(num1,num2)
+
+module.exports = {jurosimples, jurocomposto, calculoIR, calculo}
