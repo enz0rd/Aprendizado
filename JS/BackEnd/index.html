@@ -1,0 +1,159 @@
+<html>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: space-around;
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: black 10px 10px 10px;
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .button {
+            background-color: rgb(49, 49, 218);
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-family: Verdana;
+            size: 30px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgb(36, 36, 160);
+            transform: scale(105%);
+        }
+
+        table, th, td {
+            
+            font-family: Verdana;
+            font-size: 15px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+          }
+
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+
+    </style>
+        <head>
+            <meta charset="utf-8">
+            <title>Teste</title>
+        </head>
+        
+    <body>
+        <div class="container">
+            <h1>Cadastro de Aluno</h1>
+            <form>
+                <label for="name">Nome</label>
+                <input type="text" id="name" maxlength="20" required><br><br>
+                <label for="age">Idade</label>
+                <input type="number" id="age" maxlength="2" required><br><br>
+                <label for="escola">Escola</label>
+                <input type="text" id="escola" maxlength="20" required><br><br>
+                <label for="matr">Matrícula</label>
+                <input type="number" id="matr" maxlength="10" required minlength="10"><br><br>
+                <label for="cat">Categoria</label>
+                <select id="cat">
+                    <option value="Prézinho">Prézinho</option>
+                    <option value="Ensino Fundamental">Ensino Fundamental</option>
+                    <option value="Ensino Médio">Ensino Médio</option>
+                </select><br><br>
+                <label for="turno">Turno</label>
+                <select id="turno">
+                    <option value="Matutino">Matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                    <option value="Noturno">Noturno</option>
+                </select><br><br>
+                <label for="date">Data de Nascimento</label>
+                <input type="date" id="date" required>
+            </form>
+
+            <button onclick="cadastrarAluno()" class="button">Cadastrar</button>
+
+        </div><br><br>
+
+        <button class="button" onclick="buscarAluno(), toggle()">Listar os Alunos</button>
+
+        <br><br>
+
+        <table id="listar" class="table" style="display: none;">
+            <thead>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Escola</th>
+                    <th>Matrícula</th>
+                    <th>Categoria</th>
+                    <th>Turno</th>
+                    <th>Data de Nascimento</th>
+               
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+        <script>
+            async function cadastrarAluno() {
+                const aluno = {
+                    nome: document.getElementById('name').value,
+                    idade: document.getElementById('age').value,
+                    escola: document.getElementById('escola').value,
+                    matrícula: document.getElementById('matr').value,
+                    categoria: document.getElementById('cat').value,
+                    turno: document.getElementById('turno').value,
+                    data_de_nascimento: document.getElementById('date').value
+                }
+                const r = await fetch('http://localhost:3000/alunos/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                        
+                    },
+                    body: JSON.stringify(aluno)
+            
+                })
+            console.log(r);
+            alert('Aluno Cadastrado')
+                }
+        
+            function toggle() {
+                let tabela = document.getElementById('listar')
+
+                if(tabela.getAttribute("style") == "display: none;") {
+                    tabela.setAttribute('style', "display: visible;")
+                } else if (tabela.getAttribute("style") == "display: visible;") {
+                    tabela.setAttribute('style', "display: none;")
+                }
+            }
+            async function buscarAluno() {
+
+                const listar = await fetch("http://localhost:3000/alunos")
+                const resposta = await listar.json();
+
+                resposta.forEach(element => {
+                    document.getElementById('tbody').innerHTML += `<tr>
+                        <td>`+ element.nome +`</td>
+                        <td>`+ element.idade +` anos</td>
+                        <td>`+ element.escola +`</td>
+                        <td>`+ element.matrícula +`</td>
+                        <td>`+ element.categoria +`</td>
+                        <td>`+ element.turno +`</td>
+                        <td>`+ element.data_de_nascimento +`</td>
+                    </tr>`;
+                })
+                
+            }
+        </script>
+    
+    
+    </body>
+</html>
