@@ -46,10 +46,9 @@
 
 
     </style>
-        <head>
-            <meta charset="utf-8">
-            <title>Teste</title>
-        </head>
+    <head>
+        <title>Teste</title>
+    </head>
         
     <body>
         <div class="container">
@@ -83,11 +82,11 @@
 
         </div><br><br>
 
-        <button class="button" onclick="buscarAluno(), toggle()">Listar os Alunos</button>
+        <button class="button" onclick="buscarAluno()">Listar os Alunos</button>
 
         <br><br>
 
-        <table id="listar" class="table" style="display: none;">
+        <table id="listar" class="table">
             <thead>
                     <th>Nome</th>
                     <th>Idade</th>
@@ -115,25 +114,14 @@
                 const r = await fetch('http://localhost:3000/alunos/add', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
-                        
+                        'Content-Type': 'application/json'       
                     },
                     body: JSON.stringify(aluno)
-            
                 })
-            console.log(r);
-            alert('Aluno Cadastrado')
-                }
-        
-            function toggle() {
-                let tabela = document.getElementById('listar')
-
-                if(tabela.getAttribute("style") == "display: none;") {
-                    tabela.setAttribute('style', "display: visible;")
-                } else if (tabela.getAttribute("style") == "display: visible;") {
-                    tabela.setAttribute('style', "display: none;")
-                }
+                console.log(r);
+                alert('Aluno Cadastrado');
             }
+
             async function buscarAluno() {
 
                 const listar = await fetch("http://localhost:3000/alunos")
