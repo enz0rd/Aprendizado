@@ -5,10 +5,14 @@ const app = express();
 
 app.use(bodyParser.json())
 
+// Criar BD em SQLite
+
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './database.db'
 });
+
+// Tabela de Produtos no BD
 
 const Produto = sequelize.define('produto', {
     nome: {
@@ -31,6 +35,8 @@ const Produto = sequelize.define('produto', {
     paranoid: true
 });
 
+// Criar um produto
+
 app.post('/produtos', async (req, res) => {
     const produto = await Produto.create({
         nome: req.body.nome,
@@ -41,6 +47,8 @@ app.post('/produtos', async (req, res) => {
     res.json(produto);
 });
 
+// Deletar um Produto
+
 app.delete('/produtos/:id',async( req, res ) => {
     await Produto.destroy({
       where: {
@@ -50,10 +58,25 @@ app.delete('/produtos/:id',async( req, res ) => {
     res.send('deletado')
 })
 
+// Ver todos os produtos
+
 app.get('/produtos', async (req,res) => {
     const produtos = await Produto.findAll();
     res.json(produtos);
 })
+
+// Ver um produto
+
+app.get('/produtos/:id', async (req,res) => {
+    const produtos = await Produto.findAll({
+        where: {
+            id: req.params.id
+        }
+    });
+    res.json(produtos);
+})
+
+// Editar produto
 
 app.put('/produtos/:id', async (req, res) => {
     const produto = await Produto.findByPk(req.params.id);
@@ -64,6 +87,8 @@ app.put('/produtos/:id', async (req, res) => {
     produto.save();
     res.json(produto);
 })
+
+// Tabela no BD de Clientes
 
 const Cliente = sequelize.define('clientes', {
     nome: {
@@ -91,6 +116,8 @@ const Cliente = sequelize.define('clientes', {
     paranoid: true
 })
 
+// Cadastrar um cliente
+
 app.post('/clientes', async (req, res) => {
     const cliente = await Cliente.create({
         nome: req.body.nome,
@@ -103,6 +130,8 @@ app.post('/clientes', async (req, res) => {
     res.json(cliente);
 });
 
+// Deletar um cliente
+
 app.delete('/clientes/:id',async( req, res ) => {
     await Cliente.destroy({
       where: {
@@ -112,10 +141,25 @@ app.delete('/clientes/:id',async( req, res ) => {
     res.send('deletado')
 })
 
+// Ver todos os Clientes
+
 app.get('/clientes', async (req,res) => {
     const clientes = await Cliente.findAll();
     res.json(clientes);
 })
+
+// achar um cliente
+
+app.get('/clientes/:id', async (req,res) => {
+    const cliente = await Cliente.findAll({
+        where: {
+          id: req.params.id
+        }
+      });
+    res.json(cliente);
+})
+
+//editar cliente
 
 app.put('/clientes/:id', async (req, res) => {
     const clientes = await Cliente.findByPk(req.params.id);
