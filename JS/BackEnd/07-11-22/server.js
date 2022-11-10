@@ -46,17 +46,6 @@ app.get('/', (req,res) => {
     res.send('Página Inicial')
 })
 
-app.post('/', (req,res) => {
-    res.send(`<script>
-    alert('Success')
-    
-    setTimeout(function () {
-        window.location.href = "/"
-    }, 1000)
-
-    </script>`)
-})
-
 app.get('/users', async (req,res) => {
     const users = await User.findAll();
     res.json(users)
@@ -69,6 +58,11 @@ app.post('/users', async (req,res) => {
         password: req.body.password,
     })
     res.json(user)
+})
+
+app.get('/posts', async (req,res) => {
+    const post = await Post.findAll();
+    res.json(post)
 })
 
 async function start() {
