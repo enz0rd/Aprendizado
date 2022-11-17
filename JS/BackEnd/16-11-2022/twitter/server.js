@@ -51,6 +51,20 @@ app.post('/users', async (req, res) => {
   res.json(user);
 });
 
+// app.delete('/users/:id', async (req,res) => {
+//   User.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then( function(deletado) {
+//     if(deletado) {
+//       res.send('Usuário com id '+req.params.id+' deletado')
+//     } else {
+//       res.send('Erro deletando o usuário com id '+req.params.id)
+//     }
+//   })
+// })
+
 app.post('/login', async (req, res) => {
   const user = await User.findOne({
     where: {

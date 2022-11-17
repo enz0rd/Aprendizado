@@ -5,8 +5,8 @@
         <v-card>
           <v-card-title> Login </v-card-title>
           <v-card-text>
-            <v-text-field v-model="email" label="E-mail"></v-text-field>
-            <v-text-field v-model="password" label="Password"></v-text-field>
+            <v-text-field label="E-mail" v-model="email"> </v-text-field>
+            <v-text-field label="Senha" v-model="password"> </v-text-field>
             <v-btn @click="registrar">Registrar</v-btn>
             <v-btn @click="entrar">Entrar</v-btn>
           </v-card-text>
@@ -23,24 +23,27 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
     };
   },
   mounted() {
     this.email = localStorage.getItem('email');
-    this.password = localStorage.getItem('password')
+    this.password = localStorage.getItem('password');
   },
   methods: {
     async entrar() {
+      localStorage.setItem('email', this.email);
+      localStorage.setItem('password', this.password);
       const resposta = await axios.post('http://localhost:3000/login', {
         email: this.email,
-        password: this.password
-      })
-      
+        password: this.password,
+      });
+      axios.defaults.headers['Authorization'] = resposta.data.token;
+      this.$router.push('twitter');
     },
     registrar() {
-      this.$router.push('/registro')
-    }
-  }
+      this.$router.push('/registro');
+    },
+  },
 };
 </script>
