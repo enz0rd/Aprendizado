@@ -1,33 +1,33 @@
 <template>
-    <div class="registro">
-      <v-container>
-        <v-row align-content="center" justify="center">
-          <v-col cols="10" sm="6">
-            <v-card>
-              <v-card-title> Registro </v-card-title>
-              <v-card-text>
-                <v-text-field label="Username" v-model="user.name"> </v-text-field>
-                <v-text-field type="email" label="E-mail" v-model="user.email"> </v-text-field>
-                <v-text-field type="password" label="Senha" v-model="user.password"> </v-text-field>
-                <v-btn @click="checkForm">Registrar</v-btn>
-                <v-btn @click="voltar">Voltar</v-btn>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
-  </template>
+  <div class="registro">
+    <v-container>
+      <v-row align-content="center" justify="center">
+        <v-col cols="10" sm="6">
+          <v-card>
+            <v-card-title> Registro </v-card-title>
+            <v-card-text>
+              <v-text-field label="Username" v-model="user.name"> </v-text-field>
+              <v-text-field type="email" label="E-mail" v-model="user.email"> </v-text-field>
+              <v-text-field type="password" label="Senha" v-model="user.password"> </v-text-field>
+              <v-btn @click="checkForm">Registrar</v-btn>
+              <v-btn @click="voltar">Voltar</v-btn>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+</template>
 
-  <script>
+<script>
 // eslint-disable no-unused-vars
 import axios from 'axios'
 
 export default {
   data() {
     return {
-        errors: [],
-        user: {
+      errors: [],
+      user: {
         name: '',
         email: '',
         password: ''
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async registrar() {
-      localStorage.setItem('user.name', this.email);
+      localStorage.setItem('user.name', this.name);
       localStorage.setItem('user.email', this.email);
       localStorage.setItem('user.password', this.password);
       const resposta = await axios.post('http://localhost:3000/users', {
@@ -51,8 +51,8 @@ export default {
     async voltar() {
       this.$router.push('/login')
     },
-    
-    async checkForm (e) {
+
+    async checkForm(e) {
       if (this.user.name && this.validEmail(this.user.email) && (this.user.password.length > 4)) {
         this.registrar();
       }
@@ -73,7 +73,7 @@ export default {
           if (!this.user.password) {
             this.errors.push('A senha é obrigatória.');
             alert(this.errors)
-          } else if (this.user.password.length < 4){
+          } else if (this.user.password.length < 4) {
             this.errors.push('Insira uma senha com mais de 4 caracteres.');
             alert(this.errors)
           }

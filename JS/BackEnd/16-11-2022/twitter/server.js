@@ -115,6 +115,15 @@ app.get('/posts', async (req, res) => {
   res.json(posts);
 });
 
+app.delete('/posts', async (req, res) => {
+  const posts = await Post.destroy({
+    where: {
+      id: req.body.id
+    }
+  });
+  res.json(posts);
+});
+
 app.listen(3000, async () => {
   await sequelize.authenticate();
   await sequelize.sync();
